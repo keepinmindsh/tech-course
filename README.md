@@ -2,8 +2,9 @@
 
 ### Coding Convention 
 
- - Java Style Guie : [https://google.github.io/styleguide/javaguide.html]
+ - Java Style Guide : [https://google.github.io/styleguide/javaguide.html]
 
+ - React Style Guide : [https://github.com/apple77y/javascript/tree/master/react] - 2018/03 기준 
 
 ### Clean Code 이해하기 
 
