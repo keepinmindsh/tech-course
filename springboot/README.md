@@ -1,16 +1,16 @@
 # Spring Boot 이해하기 
 
-#### Spring Initializer 
+## Spring Initializer 
 
 
-#### Spring Boot Starter ( Web, JPA, Lombok )
+## Spring Boot Starter ( Web, JPA, Lombok )
 
 
-- structure 
+#### structure 
 
-![](https://github.com/keepinmindsh/tech-course/blob/main/assets/springboot_001.png){: .align-center} 
+![](https://github.com/keepinmindsh/tech-course/blob/main/assets/springboot_001.png)
 
-- main
+#### main
 
 ```java
 
@@ -30,7 +30,7 @@ public class DemoApplication {
 
 ```
 
-- build.gradle 
+#### build.gradle 
 
 ```gradle
 
