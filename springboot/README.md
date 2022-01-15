@@ -10,10 +10,10 @@
 
 ![](https://github.com/keepinmindsh/tech-course/blob/main/assets/springboot_001.png)
 
-> src
-> .gitignore
-> build.gradle
-> settings.gradle
+> src  
+> .gitignore  
+> build.gradle  
+> settings.gradle  
 
 #### main
 
