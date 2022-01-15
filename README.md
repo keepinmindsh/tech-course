@@ -8,7 +8,7 @@
 
 ### Clean Code 이해하기 
 
-##### [Clean Code 이해하기](https://github.com/keepinmindsh/tech-course/cleancode/README.md)
+##### [Clean Code 이해하기](https://github.com/keepinmindsh/tech-course/blob/main/cleancode/READMD.md)
 
 ### Spring Boot 이해하기 
 
