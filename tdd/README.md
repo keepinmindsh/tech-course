@@ -52,6 +52,9 @@ test {
 }
 ```
 
+- [Spring Boot 2.6.2 기준 test auto configuration ](https://docs.spring.io/spring-boot/docs/2.6.2/reference/htmlsingle/
+#test-auto-configuration)
+
 ### Sample 예제 
 
 ```java

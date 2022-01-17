@@ -4,6 +4,10 @@
 
 - https://start.spring.io/
 
+## **Spring Docs**
+
+- https://docs.spring.io/spring-boot/docs/
+
 ## **Spring Boot Starter ( Web, JPA, Lombok )**
 
 **기능**  
@@ -21,7 +25,7 @@
 - Absolutely no code generation and no requirement for XML configuration
 
 
-### **structure** 
+### **구조** 
 
 ![](https://github.com/keepinmindsh/tech-course/blob/main/assets/springboot_001.png)
 
@@ -31,7 +35,7 @@
 > build.gradle  
 > settings.gradle  
 
-### **main**
+### **진입점(Entry Points)**
 
 ```java 
 
@@ -51,7 +55,7 @@ public class DemoApplication {
 
 ```
 
-### **tests**
+### **테스트(Spring Boot Tests)**
 
 ```java
 
@@ -71,7 +75,7 @@ class DemoApplicationTests {
 
 ```
 
-### **build.gradle**
+### **기본 Gradle 설정(build.gradle)**
 
 ```gradle
 
