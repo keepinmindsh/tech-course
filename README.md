@@ -6,6 +6,10 @@
 
  - React Style Guide : [https://github.com/apple77y/javascript/tree/master/react] - 2018/03 기준 
 
+### **기본 환경**
+
+#### [Spring Boot 이해하기](https://github.com/keepinmindsh/tech-course/blob/main/basic/README.md)
+
 ### **Spring Boot 이해하기** 
 
 ##### [Spring Boot 이해하기](https://github.com/keepinmindsh/tech-course/blob/main/springboot/README.md)
