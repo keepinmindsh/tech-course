@@ -8,7 +8,7 @@
 
 ### **기본 환경**
 
-#### [Spring Boot 이해하기](https://github.com/keepinmindsh/tech-course/blob/main/basic/README.md)
+#### [기본 정보 설정](https://github.com/keepinmindsh/tech-course/blob/main/basic/README.md)
 
 ### **Spring Boot 이해하기** 
 
