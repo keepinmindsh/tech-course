@@ -1,5 +1,9 @@
 # TDD 이해하기 
 
+**TDD(테스트 주도 개발) Test Driven Development**  
+
+업무 코드를 작성하기 전에 테스트 코드를 먼저 만드는 것  
+
 ```java
 
 @RestController
@@ -9,20 +13,40 @@ public class TddController {
     private final TDDService tddService;
 
     @GetMapping("/helloworld")
-    String helloWorld(){
-        return tddService.greeting();
+    List<Member> helloWorld(){
+        return tddService.member();
+    }
+
+    @PostMapping("/helloworld")
+    void helloWorldSave(String name){
+        tddService.memberSave(name);
     }
 }
 
 public interface TDDService {
-    String greeting();
+    List<Member> member();
+
+    void memberSave(String name);
 }
 
 @Service
+@RequiredArgsConstructor
 public class TDDServiceImpl implements TDDService {
+
+    private final MemberRepository memberRepository;
+
     @Override
-    public String greeting() {
-        return "Hello World";
+    public List<Member> member() {
+        return memberRepository.findAll();
+    }
+
+    @Override
+    public void memberSave(String name) {
+
+        Member member = new Member();
+        member.setName(name);
+
+        memberRepository.save(member);
     }
 }
 
@@ -55,12 +79,23 @@ class SpringForTestsApplicationTests {
 	private TDDService service;
 
 	@Test
-	public void helloworldTests() throws Exception {
-		when(service.greeting()).thenReturn("Hello World");
+	public void helloWorldGetTests() throws Exception {
+		when(service.member()).thenReturn(new ArrayList<Member>());
+
 		this.mockMvc.perform(get("/helloworld"))
 				.andDo(print())
 				.andExpect(status().isOk())
-				.andExpect(content().string(containsString("Hello World")));
+				.andExpect(content().json("[]"));
+	}
+
+	@Test
+	public void helloWorldPostTests() throws Exception {
+		when(service.member()).thenReturn(new ArrayList<Member>());
+
+		this.mockMvc.perform(post("/helloworld"))
+				.andDo(print())
+				.andExpect(status().isOk());
+
 	}
 }
 
