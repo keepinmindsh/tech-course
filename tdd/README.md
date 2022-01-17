@@ -4,6 +4,13 @@
 
 업무 코드를 작성하기 전에 테스트 코드를 먼저 만드는 것  
 
+### 기본 환경 
+
+ - h2database : https://www.h2database.com/html/main.html
+
+
+### Sample 예제 
+
 ```java
 
 @RestController
