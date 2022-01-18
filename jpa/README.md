@@ -2,9 +2,14 @@
 
 ## **JPA : Java Persistence API** 
 
-JPA는 인터페이스의 모음   
+JPA는 Java Persistence API의 약자로, 자바 어플리케이션에서 관계형 데이터베이스를 사용하는 방식을 정의한 인터페이스이다. 여기서 중요하게 여겨야 할 부분은, JPA는 말 그대로 인터페이스라는 점이다. JPA는 특정 기능을 하는 라이브러리가 아니다. 마치 일반적인 백엔드 API가 클라이언트가 어떻게 서버를 사용해야 하는지를 정의한 것처럼, JPA 역시 자바 어플리케이션에서 관계형 데이터베이스를 어떻게 사용해야 하는지를 정의하는 한 방법일 뿐이다.
 
-JPA는 애플리케이션과 JDBC 사이에서 동작
+- JPA는 인터페이스의 모음   
+
+- JPA는 애플리케이션과 JDBC 사이에서 동작
+
+- JPA 구현체 
+    - Hibernate, EclipseLink, DataNucleus, OpenJPA, ObjectDB, TopLink Essential
 
 ## **H2Database 설정** 
 
