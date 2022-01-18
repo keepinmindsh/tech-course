@@ -49,7 +49,7 @@ public class HelloWorldJPA {
 
 ```
 
-## **persistence.xml**
+## **Persistence.xml**
 
 - persistence.xml 설정 
     - jpa의 경우, 기본적인 설정 파일을 필요로 함. 순수 자바 프로젝트에서 사용할 경우 META-INF 하위에 persistence.xml 를 위치시키는 것이 중요함.
@@ -89,7 +89,7 @@ public class HelloWorldJPA {
 
 ```
 
-## **hibernate 기본 설정**
+## **Hibernate 기본 설정**
 
 - JPA Java Project 구성시 Maven 모듈 ( Gradle Or Maven )
     - https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
