@@ -1,16 +1,16 @@
-# JPA 이해하기 
+# **JPA 이해하기** 
 
-- JPA : Java Persistence API 
+## **JPA : Java Persistence API** 
 
 JPA는 인터페이스의 모음   
 
 JPA는 애플리케이션과 JDBC 사이에서 동작
 
-- H2Database 설정 
+## **H2Database 설정** 
 
 https://www.h2database.com/html/main.html 를 이용한 H2 Database 구성 
 
-- JPA Main
+## **JPA Main**
 
 ```java
 
@@ -49,16 +49,17 @@ public class HelloWorldJPA {
 
 ```
 
-- persistence.xml
-    - persistence.xml 설정 
-        - jpa의 경우, 기본적인 설정 파일을 필요로 함. 순수 자바 프로젝트에서 사용할 경우 META-INF 하위에 persistence.xml 를 위치시키는 것이 중요함.
-        - 항목별 설명
-            - hibernate.dialect : 데이터베이스 방언, 다양하게 존재하는 DB의 DDL,DML 등의 특성, 고유한 기능에 맞춰 사용할 수 있게 해주는 설정
-        - javax. ~ : 표준에서 제정한 것 
-        - hibernate. ~ : 하이버네이트 전용 옵션
-        - hibernate.show_sql : query를 출력함
-        - hibernate.format_sql : sql을 예쁘게
-        - hibernate.use_sql_comments : 쿼리 실행사유를 표시
+## **persistence.xml**
+
+- persistence.xml 설정 
+    - jpa의 경우, 기본적인 설정 파일을 필요로 함. 순수 자바 프로젝트에서 사용할 경우 META-INF 하위에 persistence.xml 를 위치시키는 것이 중요함.
+    - 항목별 설명
+        - hibernate.dialect : 데이터베이스 방언, 다양하게 존재하는 DB의 DDL,DML 등의 특성, 고유한 기능에 맞춰 사용할 수 있게 해주는 설정
+    - javax. ~ : 표준에서 제정한 것 
+    - hibernate. ~ : 하이버네이트 전용 옵션
+    - hibernate.show_sql : query를 출력함
+    - hibernate.format_sql : sql을 예쁘게
+    - hibernate.use_sql_comments : 쿼리 실행사유를 표시
 
 ```xml
 
@@ -88,10 +89,11 @@ public class HelloWorldJPA {
 
 ```
 
-- hibernate 기본 설정 
-    - JPA Java Project 구성시 Maven 모듈 ( Gradle Or Maven )
-        - https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
-        - https://mvnrepository.com/artifact/com.h2database/h2
+## **hibernate 기본 설정**
+
+- JPA Java Project 구성시 Maven 모듈 ( Gradle Or Maven )
+    - https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
+    - https://mvnrepository.com/artifact/com.h2database/h2
 
 ```gradle
 plugins {
