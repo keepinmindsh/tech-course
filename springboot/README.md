@@ -156,6 +156,8 @@ public @interface SpringBootApplication {
 
 - Spring Boot의 의존성중 하나인 org.springframework.boot:spring-boot-autoconfigure 를 확인해 보자
 
+![alt text](https://github.com/keepinmindsh/tech-course/blob/f23397c1a08afff627511fe9a133628183cfd87e/assets/springboot_002.png)
+
 ##### @ComponentScan
 
 - @Component @Configuration @Repository @Service @Controller @RestController  
