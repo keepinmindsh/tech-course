@@ -4,7 +4,7 @@
 
 JPA는 Java Persistence API의 약자로, 자바 어플리케이션에서 관계형 데이터베이스를 사용하는 방식을 정의한 인터페이스이다. 여기서 중요하게 여겨야 할 부분은, JPA는 말 그대로 인터페이스라는 점이다. JPA는 특정 기능을 하는 라이브러리가 아니다. 마치 일반적인 백엔드 API가 클라이언트가 어떻게 서버를 사용해야 하는지를 정의한 것처럼, JPA 역시 자바 어플리케이션에서 관계형 데이터베이스를 어떻게 사용해야 하는지를 정의하는 한 방법일 뿐이다.
 
-- JPA는 인터페이스의 모음   
+- JPA는 인터페이스의 모음 : 기술 명세 
 
 - JPA는 애플리케이션과 JDBC 사이에서 동작
 
@@ -20,7 +20,40 @@ h2 database는 다른 RDB의 환경 구성 및 설치에 있어 훨씬 쉽고 �
 
 ![H2 Database 접속 화면](https://github.com/keepinmindsh/tech-course/blob/5836f80ab528b6ab5d8f2cc2f0c4be6333c8a1f8/assets/jpastudy_0001.png)
 
-## **JPA(Hibernate)의 기본 선언**
+## **JPA(Hibernate)의 Get Started**
+
+Spring Data JPA가 아닌 hibernate를 활용하여 JPA에 대해서 알아보고자 한다.   
+Spring Data JPA를 사용할 경우 EntityManager의 선언 필요 없디 Repository를 활용 가능하기 때문에 Hibernate의 entityManager를 직접 선언하여 사용하면서 JPA를 이해해본다. 
+
+```gradle
+
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    // https://mvnrepository.com/artifact/com.h2database/h2
+    implementation 'com.h2database:h2:2.0.204'
+    // https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
+    implementation 'org.hibernate:hibernate-entitymanager:6.0.0.Alpha7'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+```
 
 ```java
 
@@ -55,7 +88,6 @@ public class HelloWorldJPA {
         entityManagerFactory.close();
     }
 }
-
 
 ```
 
