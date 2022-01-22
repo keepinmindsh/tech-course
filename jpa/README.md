@@ -15,7 +15,9 @@ JPA는 Java Persistence API의 약자로, 자바 어플리케이션에서 관계
 
 https://www.h2database.com/html/main.html 를 이용한 H2 Database 구성 
 
-## **JPA의 기본 선언**
+![H2 Database 접속 화면](https://github.com/keepinmindsh/tech-course/blob/5836f80ab528b6ab5d8f2cc2f0c4be6333c8a1f8/assets/jpastudy_0001.png)
+
+## **JPA(Hibernate)의 기본 선언**
 
 ```java
 
