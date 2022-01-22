@@ -120,7 +120,7 @@ test {
 
 ### **Spring Boot**
 
-##### 우리가 선언하는 @SpringBootApplication 은 
+#### 우리가 선언하는 @SpringBootApplication 은 
 
 ```java
 
@@ -133,7 +133,7 @@ public class Application {
 
 ```
 
-##### Annotations 내에 아래의 코드를 정의하고 있는데, 
+#### Annotations 내에 아래의 코드를 정의하고 있는데, 선언된 Annotations 들 중에 중요한 것은 아래에 별도로 표시한다. 
 
 ```java 
 
@@ -150,15 +150,17 @@ public @interface SpringBootApplication {
 
 ```
 
-##### @SpringBootConfiguration
+#### @SpringBootConfiguration
 
-##### @EnableAutoConfiguration
+스프링 부트의 설정을 나타내는 어노테이션이다. 스프링의 @Configuration을 대체하며 스프링 부트 전용 어노테이션이다. 테스트 어노테이션을 사용할 때 계속 이 어노테이션을 찾기 때문에 스프링 부트에서는 필수 어노테이션이다.
+
+#### @EnableAutoConfiguration
 
 - Spring Boot의 의존성중 하나인 org.springframework.boot:spring-boot-autoconfigure 를 확인해 보자
 
 ![alt text](https://github.com/keepinmindsh/tech-course/blob/f23397c1a08afff627511fe9a133628183cfd87e/assets/springboot_002.png)
 
-##### @ComponentScan
+#### @ComponentScan
 
 - @Component @Configuration @Repository @Service @Controller @RestController  
 해당 어노테이션이 선언된 하위 패키지에서 위와 같은 Annotation을 찾아서 Bean으로 등록한다.
