@@ -30,15 +30,19 @@
 ![](https://github.com/keepinmindsh/tech-course/blob/main/assets/springboot_001.png)
 
 > src  
+  - 기본 소스 경로 
 
 > resources  
-  - application.yml 
+  - application.yml : SpringBoot의 설정값을 세팅하는 파일 
 
 > .gitignore  
+  - git을 사용할 경우, 불필요한 파일을 제외시켜야할 경우 
 
 > build.gradle  
+  - gradle 설정 파일 
 
 > settings.gradle  
+  - gradle의 모듈 정의 및 세팅 파일 
 
 ### **진입점(Entry Points)**
 
