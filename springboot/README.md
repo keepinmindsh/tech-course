@@ -30,9 +30,14 @@
 ![](https://github.com/keepinmindsh/tech-course/blob/main/assets/springboot_001.png)
 
 > src  
+
 > resources  
+  - application.yml 
+
 > .gitignore  
+
 > build.gradle  
+
 > settings.gradle  
 
 ### **진입점(Entry Points)**
@@ -112,3 +117,46 @@ test {
 }
 
 ```
+
+### **Spring Boot**
+
+##### 우리가 선언하는 @SpringBootApplication 은 
+
+```java
+
+@SpringBootApplication
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+
+```
+
+##### Annotations 내에 아래의 코드를 정의하고 있는데, 
+
+```java 
+
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Inherited
+@SpringBootConfiguration
+@EnableAutoConfiguration
+@ComponentScan(excludeFilters = { @Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),
+		@Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) })
+public @interface SpringBootApplication {
+
+
+```
+
+##### @SpringBootConfiguration
+
+##### @EnableAutoConfiguration
+
+- Spring Boot의 의존성중 하나인 org.springframework.boot:spring-boot-autoconfigure 를 확인해 보자
+
+##### @ComponentScan
+
+- @Component @Configuration @Repository @Service @Controller @RestController  
+해당 어노테이션이 선언된 하위 패키지에서 위와 같은 Annotation을 찾아서 Bean으로 등록한다.
