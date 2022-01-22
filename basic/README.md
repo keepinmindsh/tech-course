@@ -11,4 +11,4 @@
 
 ### github 도움이 되는 Plugins 
 
-- ![Octoree](https://chrome.google.com/webstore/detail/octotree-github-code-tree/bkhaagjahfmjljalopjnoealnfndnagc)
+- [https://chrome.google.com/webstore/detail/octotree-github-code-tree/bkhaagjahfmjljalopjnoealnfndnagc]
