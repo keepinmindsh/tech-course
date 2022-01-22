@@ -31,6 +31,10 @@ h2 database는 다른 RDB의 환경 구성 및 설치에 있어 훨씬 쉽고 �
 Spring Data JPA가 아닌 hibernate를 활용하여 JPA에 대해서 알아보고자 한다.   
 Spring Data JPA를 사용할 경우 EntityManager의 선언 필요 없디 Repository를 활용 가능하기 때문에 Hibernate의 entityManager를 직접 선언하여 사용하면서 JPA를 이해해본다. 
 
+- JPA Java Project 구성시 Maven 모듈 ( Gradle Or Maven )
+    - https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
+    - https://mvnrepository.com/artifact/com.h2database/h2
+
 ```gradle
 
 plugins {
@@ -137,38 +141,87 @@ public class HelloWorldJPA {
 
 ```
 
-## **Hibernate 기본 설정**
+## **Hibernate Method 활용** 
 
-- JPA Java Project 구성시 Maven 모듈 ( Gradle Or Maven )
-    - https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
-    - https://mvnrepository.com/artifact/com.h2database/h2
+#### QUERY - JPQL 방언에 맞춰서 Paging 등의 쿼리 적용이 가능함.
 
-```gradle
-plugins {
-    id 'java'
+```java
+
+public static void main(String[] args) {
+    List<Member> memberList = entityManager.createQuery("select m from Member as m", Member.class)
+            .setFirstResult(1)
+            .setMaxResults(10)
+            .getResultList();
+    memberList.forEach(
+            item -> {
+                System.out.println("name : " + item.getName());
+            }
+    );
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+```
 
-repositories {
-    mavenCentral()
+#### JPA를 통해서 객체를 반환하면 해당 객체는 JPA에서 관리하여 변경사항을 Transaction Commit시 반영한다.
+
+```java
+
+public static void main(String[] args) {
+    Member findMember = entityManager.find(Member.class, 1L);
+    findMember.setName("Good!");
 }
 
-dependencies {
+```
 
-    // https://mvnrepository.com/artifact/com.h2database/h2
-    implementation 'com.h2database:h2:2.0.204'
-    // https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
-    implementation 'org.hibernate:hibernate-entitymanager:6.0.0.Alpha7'
+#### 삭제 처리 
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+```java
+
+public static void main(String[] args) {
+    Member findMember = entityManager.find(Member.class, 1L);
+    entityManager.remove(findMember);
 }
 
-test {
-    useJUnitPlatform()
+```
+
+#### 조회 클래스 분리
+
+```java
+
+public static void main(String[] args) {
+    Member findMember = entityManager.find(Member.class, 1L);
+    System.out.println("Id :" + findMember.getId() + ", Name : " + findMember.getName());
 }
+
+```
+
+#### 저장 클래스 분리
+
+```java
+
+public static void main(String[] args) {
+    Member member = new Member();
+    member.setId(2L);
+    member.setName("Hello");
+    entityManager.persist(member);
+}            
+
+```
+
+#### 비영속, 영속 상태
+
+```java
+
+public static void main(String[] args) {
+    // 비영속
+    Member member = new Member();
+    member.setId(100L);
+    member.setName("Bong JPA");
+
+    // 영속 상태
+    // persist 시점에는 실제로 데이터가 저장되는 시점이 아님.
+    entityManager.persist(member);
+}   
+
 ```
 
 ## **Database 스키마 자동 설정**
@@ -188,8 +241,6 @@ test {
   - 제약조건 추가 
     - @Column(nullable = false, name= "", unique = true, length = 10 )
       - DDL 생성을 도와주는 기능을 제공함. 실행 로직에는 영향을 주지 않음 
-
-
 
 ```shell
 
