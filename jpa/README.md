@@ -11,6 +11,12 @@ JPA는 Java Persistence API의 약자로, 자바 어플리케이션에서 관계
 - JPA 구현체 
     - Hibernate, EclipseLink, DataNucleus, OpenJPA, ObjectDB, TopLink Essential
 
+
+## **JPA 기본 구성**
+
+![JPA 기본 계층도](https://github.com/keepinmindsh/tech-course/blob/83e50da1d3cd9900e9ac1dd51d06fde64a4f7489/assets/jpastudy_0002.png)
+
+
 ## **H2Database 설정** 
 
 https://www.h2database.com/html/main.html 를 이용한 H2 Database 구성 
