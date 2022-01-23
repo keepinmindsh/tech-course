@@ -224,6 +224,23 @@ public static void main(String[] args) {
 
 ```
 
+#### 1차 캐시 
+
+ - 영속성 컨텍스트로 구성되면 1차 캐시의 역할로 이미 메모리에 로딩되어 있는 객체에 대해서는 DB로 별도의 질의 없이 조회가 가능하다. 
+
+```java
+public static void main(String[] args) {
+    // TODO 1차 캐시
+    Member member = new Member();
+    member.setId(101L);
+    member.setName("Hello");
+    entityManager.persist(member);
+
+    Member member1 = entityManager.find(Member.class, 101L);
+    Member member2 = entityManager.find(Member.class, 101L);
+}   
+```
+
 ## **Database 스키마 자동 설정**
 
 - DLL을 애플리케이션 실행 시점에 자동 생성 
