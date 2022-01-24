@@ -241,6 +241,44 @@ public static void main(String[] args) {
 }   
 ```
 
+#### 동일성 보장 
+
+```java
+
+public static void main(String[] args) {
+    Member member1 = entityManager.find(Member.class, 101L);
+    Member member2 = entityManager.find(Member.class, 101L);
+
+    System.out.println("member2 = " + ( member1 == member2));
+}   
+
+```
+
+#### Transaction 쓰기 지연
+
+```java
+
+public static void main(String[] args) {
+    Member member1 = new Member(150L, "A");
+    Member member2 = new Member(160L, "B");
+
+    entityManager.persist(member1);
+    entityManager.persist(member2);
+}   
+
+```
+
+#### 변경 감지 
+
+```java
+
+public static void main(String[] args) {
+    Member member = entityManager.find(Member.class, 150L);
+    member.setName("ZZZZZ")
+}   
+
+```
+
 ## **Database 스키마 자동 설정**
 
 - DLL을 애플리케이션 실행 시점에 자동 생성 
