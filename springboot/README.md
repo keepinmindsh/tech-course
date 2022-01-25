@@ -168,3 +168,25 @@ public @interface SpringBootApplication {
 
 - @Component @Configuration @Repository @Service @Controller @RestController  
 해당 어노테이션이 선언된 하위 패키지에서 위와 같은 Annotation을 찾아서 Bean으로 등록한다.
+
+
+#### Study Cases
+
+- operation_systems
+  - forpms
+    -  /forpms/a
+  - forcms
+    -  /forcms/a
+  - forbwi
+    -  /forbwi/a
+  - forexp
+    -  /forexp/a
+  - forwith
+    -  /forwith/a
+
+  - starter 
+    - modules 
+      - context 
+    - starter 
+      - StarterApplication 	   
+
