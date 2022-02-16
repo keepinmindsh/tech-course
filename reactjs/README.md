@@ -2,9 +2,11 @@
 
 ### reactjs app 생성하기 
 
+```shell
 npx create-react-app my-app
 cd my-app
 npm start
+````
 
 ### 기본 게임 App 만들어보기 
 
