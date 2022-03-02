@@ -173,3 +173,5 @@ class CounterHandler extends Component {
 export default CounterHandler;
 
 ```
+
+- 실 사용례
