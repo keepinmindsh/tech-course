@@ -16,6 +16,11 @@
 
 - [Oracle Client 11g 다운로드 경로](https://www.oracle.com/database/technologies/xe-prior-release-downloads.html)
 
+### SQL Editor 설치하기 
+
+- [DBeaver 다운로드](https://dbeaver.io/)
+- [SQL Developer 다운로드](https://www.oracle.com/database/technologies/appdev/sqldeveloper-landing.html)
+
 ### github 도움이 되는 Plugins 
 
 - [Octo Tree - 크롬 플러그인 설치하기](https://chrome.google.com/webstore/detail/octotree-github-code-tree/bkhaagjahfmjljalopjnoealnfndnagc)
