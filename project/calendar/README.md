@@ -17,7 +17,7 @@
     - Calendar의 일자를 계산하는 로직을 Java를 이용해서 구현한다. 
     - Java 코드를 작성시 Test 코드를 작성한다. 
   - UI는 자유롭게 구성한다. 언어 무관, 개별 프로젝트로 구성한다. 
-  - Java 프로젝트는 github를 이용해서 github repository(https://github.com/keepinmindsh/test-code.git)를 구성해 하나의 소스 코드 내에서 구성한다. 
+  - Java 프로젝트는 github를 이용해서 github repository를 구성해 하나의 소스 코드 내에서 구성한다. 
     - git branch를 구성한다. 
       - develop
       - main
