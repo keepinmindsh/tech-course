@@ -1,6 +1,12 @@
 # DB 설계 
  
  - RDBMS
+   - RDB를 생성하고 수정하고 관리할 수 있는 소프트웨어이다.
+   - RDBMS는 Relational DataBase Management System의 약자로 관계형 모델을 기반으로 하는 DBMS 유형이다. 관계형 모델이란?
+   - RDBMS의 테이블은 서로 연관되어 있어 일반 DBMS보다 효율적으로 데이터를 저장, 구성 및 관리할 수 있다.
+   - 정규화를 통해 데이터의 중복성을 최소화하여 트랜잭션을 수행하는 것이 더 쉽다.
+   - 데이터의 원자성, 일관성, 격리 및 내구성을 유지하며 데이터 무결성을 높인다.
+   - MSSQL, MySQL, Oracle이 RDBMS의 몇 가지 예이다.
  
  - Oracle 
    - DDL  - 데이터 정의어(Data Definition Language)
