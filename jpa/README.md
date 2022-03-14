@@ -422,6 +422,86 @@ create table Member (
 )
 ```
 
+## 기본기 매핑 
+
+- 생성 전략 
+    - IDENTITY
+    - SEQUENCE
+    - TABLE 
+    - AUTO 
+- IDENTITY 
+    - 기본키 생성을 데이터 베이스에 위임
+    - 주로 MySQL, PostgreSQL, SQL Server, DB2 에서 사용
+    - JPA에서 IDENTITY 전략을 제외하고는 모두 트랜잭션 커밋 시점에 INSERT SQL을 실행, 그 이유는 기본키를 미리 생성하기 때문임. 
+    - IDENTITY 전략의 경우 em.persist() 시점에 INSERT_SQL이 실행되어 DB에서 기본키를 반환함. SELECT가 추가로 발생하지 않음 
+
+```java
+
+@Entity
+@SequenceGenerator(name="member_seq_generator", sequenceName = "member_seq", allocationSize = 1)
+public class MemberForSeq {
+    
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "member_seq_generator")
+  private Long id;
+
+}
+
+```
+
+- SEQUENCE 
+    - 데이터 베이스 시퀀스는 유일한 값을 순서대로 생성하는 특별한 데이터 베이스 오브젝트 ( 예 : 오라클 시퀀스 )
+    - 오라클, PostgreSQL, DB2, H2 데이터베이스에서 사용
+    - JPA에서 IDENTITY 전략을 제외하고는 모두 트랜잭션 커밋 시점에 INSERT SQL을 실행, 그 이유는 기본키를 미리 생성하기 때문임. 
+    - SEQUENCE에서 타입을 정의할 때, Long을 사용해야는 이유는 10억이 넘어가는 경우 Long으로 변경하는 것이 힘들기 때문에 Long을 사용하는 것이 나음
+
+```java
+
+@Entity
+@SequenceGenerator(name="member_seq_generator", sequenceName = "member_seq", allocationSize = 1)
+public class MemberForSeq {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_seq_generator")
+  private Long id;
+
+}
+
+```
+
+- TABLE 
+    - 키 생성 전용 테이블을 하나 만들어서 데이터베이스 시퀀스를 흉내내는 전략 
+        - name : 식별자 생성기 이름
+        - table : 키 생성 테이블 명
+        - pkColumnName : 시퀀스 컬럼명
+        - valueColumnName : 시퀀스 값 컬럼명
+        - pkColumnValue : 키로 사용할 값 이름
+        - initialValue : 초기값, 마지막으로 생성된 값이 기준이다.
+        - allocationSize : 시퀀스 한번 호출에 증가하는 수(성능 최적화에 사용됨)
+        - catalog, schema : 데이터베이스 catalog, schema 이름
+        - uniqueConstraint : 유니크 제약 조건을 지정할 수 있다.
+    - 장점 : 모든 데이터베이스에 적용 가능
+    - 단점 : 성능
+
+```java
+
+@Entity
+@TableGenerator(
+        name = "MEMBER_SEQ_GENERATOR",
+        table = "MY_SEQUENCE",
+        pkColumnValue = "MEMBER_SEQ",
+        allocationSize = 1
+)
+public class MemberForSeq {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.TABLE, generator = "member_seq_generator")
+  private Long id;
+
+}
+
+```
+
 ## **연관관계 매핑**
 
 - 양방향 매핑 
@@ -605,33 +685,6 @@ public class Member {
       - 컨트롤러에는 Entity를 절대 반환하지 말 것! 절때 반환하지 말 것! 
       - Entity를 DTO로 변환하여 반환하라! 
 
-
-## 기본기 매핑 
-
-- 생성 전략 
-    - IDENTITY
-    - SEQUENCE
-    - TABLE 
-    - AUTO 
-- IDENTITY 
-    - 기본키 생성을 데이터 베이스에 위임
-    - 주로 MySQL, PostgreSQL, SQL Server, DB2 에서 사용
-    - JPA에서 IDENTITY 전략을 제외하고는 모두 트랜잭션 커밋 시점에 INSERT SQL을 실행, 그 이유는 기본키를 미리 생성하기 때문임. 
-    - IDENTITY 전략의 경우 em.persist() 시점에 INSERT_SQL이 실행되어 DB에서 기본키를 반환함. SELECT가 추가로 발생하지 않음 
-
-```java
-
-@Entity
-@SequenceGenerator(name="member_seq_generator", sequenceName = "member_seq", allocationSize = 1)
-public class MemberForSeq {
-    
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "member_seq_generator")
-  private Long id;
-
-}
-
-```
 
 ## **주의사항**
 
