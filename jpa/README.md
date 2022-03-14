@@ -605,6 +605,34 @@ public class Member {
       - 컨트롤러에는 Entity를 절대 반환하지 말 것! 절때 반환하지 말 것! 
       - Entity를 DTO로 변환하여 반환하라! 
 
+
+## 기본기 매핑 
+
+- 생성 전략 
+    - IDENTITY
+    - SEQUENCE
+    - TABLE 
+    - AUTO 
+- IDENTITY 
+    - 기본키 생성을 데이터 베이스에 위임
+    - 주로 MySQL, PostgreSQL, SQL Server, DB2 에서 사용
+    - JPA에서 IDENTITY 전략을 제외하고는 모두 트랜잭션 커밋 시점에 INSERT SQL을 실행, 그 이유는 기본키를 미리 생성하기 때문임. 
+    - IDENTITY 전략의 경우 em.persist() 시점에 INSERT_SQL이 실행되어 DB에서 기본키를 반환함. SELECT가 추가로 발생하지 않음 
+
+```java
+
+@Entity
+@SequenceGenerator(name="member_seq_generator", sequenceName = "member_seq", allocationSize = 1)
+public class MemberForSeq {
+    
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "member_seq_generator")
+  private Long id;
+
+}
+
+```
+
 ## **주의사항**
 
 - 운영 장비에는 절대 create, create-drp, update 사용하면안된다.
