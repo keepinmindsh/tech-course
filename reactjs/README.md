@@ -30,6 +30,38 @@ Virtual DOM 은 DOM 차원에서의 더블 버퍼링이랑 다름이 없습니�
 - 기본적으로 React DOM은 JSX에 삽입된 모든 값을 렌더링 하기 전에 이스케이프하므로, 애플리케이션에서 명시적으로 작성되지 않은 내용은 주입되지 않습니다. 모든 항목은 렌더링 되기 전에 문자열로 변환됩니다.
 - JSX는 객체를 표현합니다.
 
+```javascript 
+
+const App = () => {
+    return(
+    	<div>
+        	<h1>테스트1</h1>
+        	<h2>테스트2</h2>
+        </div>
+    )
+}
+
+```
+
+
+```javscript
+
+function App() {
+    const name = '리액트';
+    return (
+            <div>
+                    {name === '리액트'? (
+                        <h1>리액트</h1>
+                    ) : (
+                        <h2>리액트가 아님</h2>
+                    )}
+                
+            </div>   
+  );
+}
+
+```
+
 - JSX 속성 요소 
 
 ```javascript 
@@ -173,3 +205,31 @@ class CounterHandler extends Component {
 export default CounterHandler;
 
 ```
+
+## Components 
+
+Component의 종류
+
+   - Uncontrolled Components
+   - Controlled component
+   - Pure component
+   - Portal component
+   - Presentaitional Component
+   - Container Component
+
+#### Functional ComponentPermalink
+
+함수형 컴포넌트라고 부르며, 16.8전가지는 함수형 컴포넌트와 클래스 기반 컴포넌트의 성능 차이는 거의 드러나지 않았습니다. 하지만 16.8에서 hooks가 도입되면서 함수형 컴포넌트에서 성능 최적화(useMemo, useCallback 등)를 진행할 수 있고, 라이프사이클(useEffect)를 제어할 수 있어 성능적으로 함수형 컴포넌트가 우위에 있다고 할 수 있습니다.
+
+함수형 컴포넌트와 React Hook
+
+- useState
+- useEffect
+- useContext
+- useReducer
+- useCallback
+- useMemo
+- useRef
+- useImperativeHandle
+- useLayoutEffect
+- useDebugValue
