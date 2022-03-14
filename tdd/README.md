@@ -153,3 +153,7 @@ class SpringForTestsApplicationTests {
 }
 
 ```
+
+### 참조 
+
+> [Spring Boot - jpa,service,controller](https://data-make.tistory.com/717)

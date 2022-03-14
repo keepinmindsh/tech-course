@@ -14,10 +14,6 @@
 
 ##### [Spring Boot 이해하기](https://github.com/keepinmindsh/tech-course/blob/main/springboot/README.md)
 
-### **JPA 이해하기** 
-
-##### [JPA 이해하기](https://github.com/keepinmindsh/tech-course/blob/main/jpa/README.md)
-
 ### **TDD 이해하기** 
 
 ##### [TDD 이해하기](https://github.com/keepinmindsh/tech-course/blob/main/tdd/README.md)
@@ -30,6 +26,10 @@
 
 ##### [ReactJS 이해하기](https://github.com/keepinmindsh/tech-course/blob/main/reactjs/README.md)
 
-### **Project 수행하기** 
+### **JPA 이해하기**
+
+##### [JPA 이해하기](https://github.com/keepinmindsh/tech-course/blob/main/jpa/README.md)
+
+### **Project 수행하기**
 
 ##### [Project 수행하기](https://github.com/keepinmindsh/tech-course/blob/main/project/README.md)

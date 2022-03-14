@@ -122,9 +122,9 @@ test {
 
 ```
 
-### **Spring Boot**
+## **Spring Boot**
 
-#### 우리가 선언하는 @SpringBootApplication 은 
+### **우리가 선언하는 @SpringBootApplication 은**
 
 ```java
 
@@ -137,7 +137,7 @@ public class Application {
 
 ```
 
-#### Annotations 내에 아래의 코드를 정의하고 있는데, 선언된 Annotations 들 중에 중요한 것은 아래에 별도로 표시한다. 
+### **Annotations 내에 아래의 코드를 정의하고 있는데, 선언된 Annotations 들 중에 중요한 것은 아래에 별도로 표시한다.** 
 
 ```java 
 
@@ -154,23 +154,160 @@ public @interface SpringBootApplication {
 
 ```
 
-#### @SpringBootConfiguration
+### **@SpringBootConfiguration**
 
 스프링 부트의 설정을 나타내는 어노테이션이다. 스프링의 @Configuration을 대체하며 스프링 부트 전용 어노테이션이다. 테스트 어노테이션을 사용할 때 계속 이 어노테이션을 찾기 때문에 스프링 부트에서는 필수 어노테이션이다.
 
-#### @EnableAutoConfiguration
+### **@EnableAutoConfiguration**
 
 - Spring Boot의 의존성중 하나인 org.springframework.boot:spring-boot-autoconfigure 를 확인해 보자
 
 ![alt text](https://github.com/keepinmindsh/tech-course/blob/f23397c1a08afff627511fe9a133628183cfd87e/assets/springboot_002.png)
 
-#### @ComponentScan
+### **@ComponentScan**
 
 - @Component @Configuration @Repository @Service @Controller @RestController  
 해당 어노테이션이 선언된 하위 패키지에서 위와 같은 Annotation을 찾아서 Bean으로 등록한다.
 
 
-#### Study Cases
+### **@Component & @Configuration**
+
+@Component 와 @Configuration은 큰 차이는 없습니다.   
+
+위에서 보앗듯이, @Configuration의 내부를 살펴보면 @Component가 정의되어 있습니다. 따라서 @Component와 @Bean을 비교하는 것이 맞습니다.   
+
+우선적으로, 개발자가 직접 작성한 클래스에 대하여 @Component는 위와 같이 bean으로 등록 할 수 있습니다. 반대로 라이브러리 혹은 내장 클래스등 개발자가 직접 제어가 불가능한 클래스의 경우 @Configuration + @Bean 어노테이션을 이용하여 bean으로 등록하여 사용하면 됩니다.
+
+- Configuration 
+
+```java
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Component
+public @interface Configuration {
+
+   /**
+    * Explicitly specify the name of the Spring bean definition associated with the
+    * {@code @Configuration} class. If left unspecified (the common case), a bean
+    * name will be automatically generated.
+    * <p>The custom name applies only if the {@code @Configuration} class is picked
+    * up via component scanning or supplied directly to an
+    * {@link AnnotationConfigApplicationContext}. If the {@code @Configuration} class
+    * is registered as a traditional XML bean definition, the name/id of the bean
+    * element will take precedence.
+    * @return the explicit component name, if any (or empty String otherwise)
+    * @see AnnotationBeanNameGenerator
+    */
+   @AliasFor(annotation = Component.class)
+   String value() default "";
+
+   /**
+    * Specify whether {@code @Bean} methods should get proxied in order to enforce
+    * bean lifecycle behavior, e.g. to return shared singleton bean instances even
+    * in case of direct {@code @Bean} method calls in user code. This feature
+    * requires method interception, implemented through a runtime-generated CGLIB
+    * subclass which comes with limitations such as the configuration class and
+    * its methods not being allowed to declare {@code final}.
+    * <p>The default is {@code true}, allowing for 'inter-bean references' via direct
+    * method calls within the configuration class as well as for external calls to
+    * this configuration's {@code @Bean} methods, e.g. from another configuration class.
+    * If this is not needed since each of this particular configuration's {@code @Bean}
+    * methods is self-contained and designed as a plain factory method for container use,
+    * switch this flag to {@code false} in order to avoid CGLIB subclass processing.
+    * <p>Turning off bean method interception effectively processes {@code @Bean}
+    * methods individually like when declared on non-{@code @Configuration} classes,
+    * a.k.a. "@Bean Lite Mode" (see {@link Bean @Bean's javadoc}). It is therefore
+    * behaviorally equivalent to removing the {@code @Configuration} stereotype.
+    * @since 5.2
+    */
+   boolean proxyBeanMethods() default true;
+
+}
+```
+- Service 
+
+```java
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Component
+public @interface Service {
+
+   /**
+    * The value may indicate a suggestion for a logical component name,
+    * to be turned into a Spring bean in case of an autodetected component.
+    * @return the suggested component name, if any (or empty String otherwise)
+    */
+   @AliasFor(annotation = Component.class)
+   String value() default "";
+
+}
+```
+
+- Repository 
+
+```java
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Component
+public @interface Repository {
+
+   /**
+    * The value may indicate a suggestion for a logical component name,
+    * to be turned into a Spring bean in case of an autodetected component.
+    * @return the suggested component name, if any (or empty String otherwise)
+    */
+   @AliasFor(annotation = Component.class)
+   String value() default "";
+
+}
+```
+
+- Controller
+
+```java
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Component
+public @interface Controller {
+
+   /**
+    * The value may indicate a suggestion for a logical component name,
+    * to be turned into a Spring bean in case of an autodetected component.
+    * @return the suggested component name, if any (or empty String otherwise)
+    */
+   @AliasFor(annotation = Component.class)
+   String value() default "";
+
+}
+
+```
+
+### **@RestController VS @Controller** 
+
+- @RestController 
+
+@RestController는 Spring MVC Controller에 @ResponseBody가 추가된 것입니다. 당연하게도 RestController의 주용도는 Json 형태로 객체 데이터를 반환하는 것입니다. 최근에 데이터를 응답으로 제공하는 Restful API를 개발할 때 주로 사용합니다.
+
+@RestController가 Data를 반환하기 위해서는 viewResolver 대신에 HttpMessageConverter가 동작합니다. HttpMessageConverter에는 여러 Converter가 등록되어 있고, 반환해야 하는 데이터에 따라 사용되는 Converter가 달라집니다. 단순 문자열인 경우에는 StringHttpMessageConverter가 사용되고, 객체인 경우에는 MappingJackson2HttpMessageConverter가 사용되며, 데이터 종류에 따라 서로 다른 MessageConverter가 작동하게 됩니다. Spring은 클라이언트의 HTTP Accept 헤더와 서버의 컨트롤러 반환 타입 정보 둘을 조합해 적합한 HttpMessageConverter를 선택하여 이를 처리합니다.
+
+- @Controller 
+
+전통적인 Spring MVC의 컨트롤러인 @Controller는 주로 View를 반환하기 위해 사용합니다. 아래와 같은 과정을 통해 Spring MVC Container는 Client의 요청으로부터 View를 반환합니다.
+
+
+### **Application.yml**
+
+- 가독성
+- 리스트 표현
+- 주석 
+- Spring Profile의 적용 
+
+
+### **Study Cases - Gradle Multi Modules** 
 
 - operation_systems
   - forpms
@@ -183,10 +320,13 @@ public @interface SpringBootApplication {
     -  /forexp/a
   - forwith
     -  /forwith/a
-
   - starter 
     - modules 
       - context 
     - starter 
       - StarterApplication 	   
 
+
+### **참조** 
+
+> [[Spring] @Controller와 @RestController 차이](https://mangkyu.tistory.com/49) - 출처: https://mangkyu.tistory.com/49 [MangKyu's Diary]

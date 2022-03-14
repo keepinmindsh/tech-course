@@ -337,6 +337,171 @@ Hibernate:
 
 ```
 
+## Mapping Annotations
+
+- @Column - 컬럼 매핑
+    - name
+    - insertable : 등록 여부
+    - updatable : 변경 여부
+    - nullable : null 값의 허용 여부 설정
+    - unique : @Table의 uniqueConstraint와 같이만 한 컬럼에 간단히 유니크 제약조건을 걸 때 사용한다.
+잘 사용하지 않는 값 - unique 인덱스 생성시 , 유니크 제약조건을 이름이 반영이 어려워 @Table 에 같이 선언하여 사용한다.
+- @Table(uniqueConstraint= )
+    - columnDefinition
+        - 컬럼 정의를 직접하고 싶은 경우,
+    - length
+        - 문자길이 제약 조건, String 타입에 사용한다.
+    - precision
+    - BigDecimal 타입에서 사용한다. 아주 큰 숫자나 소수점 사용할 경우
+- @Temporal - 날짜 타입 매핑
+    - DATE : 날짜, 데이터 베이스 date 타입과 매핑 ( 2021-01-12 )
+    - TIME : 시간, 데이터 베이스 time 타입과 매핑 ( 11:11:11 )
+    - TIMESTAMP : 날짜와 시간, 데이터베이스 timestamp 타입과 매핑 ( 2021-01-12 11:11:11 )
+    - 최근에는 ~ LocalDate(년월)와 LocalDateTime ( 년월일) - 최신 버전의 경우 변수 선언서 데이터 타입을 LocalDate와 LocalDateTime를 적용하는 경우 그에 맞게 호출됨. 아래의 test1과 test2를 참고할 것
+- @Enumerated - Enum Type 활용
+    - 기본값 : ORDINAL - Enum의 순서를 저장하는 것
+        - 쓰면 문제가 되는 이유는, enum에 값을 정의할 때, 내부에서 정해지는 enum의 index 값에 따라 순번이 변경되어 이슈가 발생할 수 있음
+        - 운영상에서는 ORDINAL를 사용하지 않음
+        - 반드시 String으로 EnumType을 사용할 것
+    - @Lob - Clob, Blob
+        - @Lob에는 지정할 수 있는 속성이 없다.
+        - 매핑하는 필드 타입이 문자면 CLOB 매핑, 나머지는 BLOB 매핑
+            - CLOB : String, char[], java.sql.CLOB
+            - BLOB : byte[], java.sql.BLOB 
+- @Transient - 매핑을 안하고 싶을 경우
+
+```java
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
+
+@Entity
+//@Table(name = "MBR")
+public class Member {
+    @Id
+    private Long id;
+
+    @Column(nullable = false, length = 500, unique = false, name = "name")
+    private String name;
+
+    private Integer age;
+    
+    @Enumerated(EnumType.STRING)
+    private RoleType roleType;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDAte;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastModifiedDate;
+
+    private LocalDate test1;
+    private LocalDateTime test2;
+    
+    @Lob
+    private String description;
+
+    public Member() {
+    }
+}
+```
+
+```shell
+create table Member (
+   id bigint not null,
+    age integer,
+    createDAte timestamp(6),
+    description clob,
+    lastModifiedDate timestamp(6),
+    name varchar(500) not null,
+    roleType varchar(255),
+    test1 date,
+    test2 timestamp(6),
+    primary key (id)
+)
+```
+
+## 기본기 매핑 
+
+- 생성 전략 
+    - IDENTITY
+    - SEQUENCE
+    - TABLE 
+    - AUTO 
+- IDENTITY 
+    - 기본키 생성을 데이터 베이스에 위임
+    - 주로 MySQL, PostgreSQL, SQL Server, DB2 에서 사용
+    - JPA에서 IDENTITY 전략을 제외하고는 모두 트랜잭션 커밋 시점에 INSERT SQL을 실행, 그 이유는 기본키를 미리 생성하기 때문임. 
+    - IDENTITY 전략의 경우 em.persist() 시점에 INSERT_SQL이 실행되어 DB에서 기본키를 반환함. SELECT가 추가로 발생하지 않음 
+
+```java
+
+@Entity
+@SequenceGenerator(name="member_seq_generator", sequenceName = "member_seq", allocationSize = 1)
+public class MemberForSeq {
+    
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "member_seq_generator")
+  private Long id;
+
+}
+
+```
+
+- SEQUENCE 
+    - 데이터 베이스 시퀀스는 유일한 값을 순서대로 생성하는 특별한 데이터 베이스 오브젝트 ( 예 : 오라클 시퀀스 )
+    - 오라클, PostgreSQL, DB2, H2 데이터베이스에서 사용
+    - JPA에서 IDENTITY 전략을 제외하고는 모두 트랜잭션 커밋 시점에 INSERT SQL을 실행, 그 이유는 기본키를 미리 생성하기 때문임. 
+    - SEQUENCE에서 타입을 정의할 때, Long을 사용해야는 이유는 10억이 넘어가는 경우 Long으로 변경하는 것이 힘들기 때문에 Long을 사용하는 것이 나음
+
+```java
+
+@Entity
+@SequenceGenerator(name="member_seq_generator", sequenceName = "member_seq", allocationSize = 1)
+public class MemberForSeq {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_seq_generator")
+  private Long id;
+
+}
+
+```
+
+- TABLE 
+    - 키 생성 전용 테이블을 하나 만들어서 데이터베이스 시퀀스를 흉내내는 전략 
+        - name : 식별자 생성기 이름
+        - table : 키 생성 테이블 명
+        - pkColumnName : 시퀀스 컬럼명
+        - valueColumnName : 시퀀스 값 컬럼명
+        - pkColumnValue : 키로 사용할 값 이름
+        - initialValue : 초기값, 마지막으로 생성된 값이 기준이다.
+        - allocationSize : 시퀀스 한번 호출에 증가하는 수(성능 최적화에 사용됨)
+        - catalog, schema : 데이터베이스 catalog, schema 이름
+        - uniqueConstraint : 유니크 제약 조건을 지정할 수 있다.
+    - 장점 : 모든 데이터베이스에 적용 가능
+    - 단점 : 성능
+
+```java
+
+@Entity
+@TableGenerator(
+        name = "MEMBER_SEQ_GENERATOR",
+        table = "MY_SEQUENCE",
+        pkColumnValue = "MEMBER_SEQ",
+        allocationSize = 1
+)
+public class MemberForSeq {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.TABLE, generator = "member_seq_generator")
+  private Long id;
+
+}
+
+```
+
 ## **연관관계 매핑**
 
 - 양방향 매핑 
@@ -519,6 +684,7 @@ public class Member {
     - JSON 생성 라이브러리를 사용하는 경우, 
       - 컨트롤러에는 Entity를 절대 반환하지 말 것! 절때 반환하지 말 것! 
       - Entity를 DTO로 변환하여 반환하라! 
+
 
 ## **주의사항**
 
