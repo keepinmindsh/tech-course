@@ -159,3 +159,4 @@ class SpringForTestsApplicationTests {
 > [Spring Boot - jpa,service,controller](https://data-make.tistory.com/717)  
 > [martinfowler - BDD](https://martinfowler.com/bliki/GivenWhenThen.html)   
 > [Spring - TDD](https://otrodevym.tistory.com/entry/Spring%EC%97%90%EC%84%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%BC%80%EC%9D%B4%EC%8A%A4-TDD-%EC%9E%91%EC%84%B1%ED%95%98%EA%B8%B0)  
+> [Spring - TDD 01](https://dzone.com/articles/test-driven-development-with-spring-boot-rest-api)
