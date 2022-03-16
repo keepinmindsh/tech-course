@@ -55,7 +55,24 @@ test {
 - [Spring Boot 2.6.2 기준 test auto configuration ](https://docs.spring.io/spring-boot/docs/2.6.2/reference/htmlsingle/
 #test-auto-configuration)
 
-### Sample 예제 
+### Spring API TDD 
+
+- Controller
+  - @WebMvcTest
+- Service 
+  - mocking 
+
+mock : 실제 객체를 만들어 사용하기에 시간, 비용 등의 Cost가 높거나 혹은 객체간의 의존성이 강해 구현하기 힘들경우 가짜객체를 만들어 사용하는 방법이다. 
+
+- Repository
+  - @DataJpaTest
+
+
+### Sample 예제 - Controller 
+
+- @WebMvcTest 
+  - Controller에 있는 Bean들만 로드
+  - 특정 컨트롤러에 대해서 지정 가능
 
 ```java
 
@@ -159,4 +176,7 @@ class SpringForTestsApplicationTests {
 > [Spring Boot - jpa,service,controller](https://data-make.tistory.com/717)  
 > [martinfowler - BDD](https://martinfowler.com/bliki/GivenWhenThen.html)   
 > [Spring - TDD](https://otrodevym.tistory.com/entry/Spring%EC%97%90%EC%84%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%BC%80%EC%9D%B4%EC%8A%A4-TDD-%EC%9E%91%EC%84%B1%ED%95%98%EA%B8%B0)  
-> [Spring - TDD 01](https://dzone.com/articles/test-driven-development-with-spring-boot-rest-api)
+> [Spring - TDD 01](https://dzone.com/articles/test-driven-development-with-spring-boot-rest-api)  
+> [Mockito](https://effortguy.tistory.com/142?category=841326)  
+> [Spring Mock](https://gocheat.github.io/spring/spring_test-1/)
+> [클린 코드와 좋은 설계를 이끄는 단위 테스트](http://www.yes24.com/Product/goods/11361087?scode=032&OzSrank=1)
