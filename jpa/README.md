@@ -1,90 +1,10 @@
 # **JPA 이해하기** 
 
+## **[기본환경 구성하기](https://github.com/keepinmindsh/tech-course/blob/main/jpa/environment/README.md)**
+
 ## **[JPA 시작하기](https://github.com/keepinmindsh/tech-course/blob/main/jpa/start/README.md)**
 
-## **H2Database 설정** 
-
-https://www.h2database.com/html/main.html 를 이용한 H2 Database 구성 
-
-h2 database는 다른 RDB의 환경 구성 및 설치에 있어 훨씬 쉽고 간편하기 때문에 개발 시점에서 
-활용하기 좋은 db이다. 구성 방식에 따라서 memory에 올려구성할 수도 있으며, 아래의 이미지와 같이 Web에서 쉽게 접근하여 데이터 조회 및 질의에 수월하다.  
-
-![H2 Database 접속 화면](https://github.com/keepinmindsh/tech-course/blob/5836f80ab528b6ab5d8f2cc2f0c4be6333c8a1f8/assets/jpastudy_0001.png)
-
-## **JPA(Hibernate)의 Get Started**
-
-Spring Data JPA가 아닌 hibernate를 활용하여 JPA에 대해서 알아보고자 한다.   
-Spring Data JPA를 사용할 경우 EntityManager의 선언 필요 없디 Repository를 활용 가능하기 때문에 Hibernate의 entityManager를 직접 선언하여 사용하면서 JPA를 이해해본다. 
-
-- JPA Java Project 구성시 Maven 모듈 ( Gradle Or Maven )
-    - https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
-    - https://mvnrepository.com/artifact/com.h2database/h2
-
-```gradle
-
-plugins {
-    id 'java'
-}
-
-group 'org.example'
-version '1.0-SNAPSHOT'
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-
-    // https://mvnrepository.com/artifact/com.h2database/h2
-    implementation 'com.h2database:h2:2.0.204'
-    // https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
-    implementation 'org.hibernate:hibernate-entitymanager:6.0.0.Alpha7'
-
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-}
-
-test {
-    useJUnitPlatform()
-}
-
-```
-
-```java
-
-package bong.lines.sample;
-
-import javax.persistence.*;
-
-public class HelloWorldJPA {
-    public static void main(String[] args) {
-
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("hello");
-
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        EntityTransaction entityTransaction = entityManager.getTransaction();
-
-        entityTransaction.begin();
-
-        try{
-
-            Member member = new Member();
-            member.setId(2L);
-            member.setName("Hello");
-            entityManager.persist(member);
-
-        }catch (Exception exception){
-            entityTransaction.rollback();
-        }finally {
-            entityManager.close();
-        }
-
-        entityManagerFactory.close();
-    }
-}
-
-```
+## **[JPA 해보기](https://github.com/keepinmindsh/tech-course/blob/main/jpa/getstarted/README.md)**
 
 ## **Persistence.xml**
 
