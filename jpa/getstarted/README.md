@@ -115,6 +115,35 @@ public class Member {
 
 ```
 
+```xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+    <persistence-unit name="hello">
+
+        <class>bong.lines.jpashoping.step1.Member</class>
+      
+        <properties>
+            <!-- 필수 속성 -->
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/test"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+
+            <!-- 옵션 -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.use_sql_comments" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="create" />
+        </properties>
+    </persistence-unit>
+</persistence>
+
+```
+
 ## References 
 
 - JPA Java Project 구성시 Maven 모듈 ( Gradle Or Maven )
