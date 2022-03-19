@@ -149,3 +149,5 @@ public class Member {
 - JPA Java Project 구성시 Maven 모듈 ( Gradle Or Maven )
   - https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
   - https://mvnrepository.com/artifact/com.h2database/h2
+
+- [hibernate properties, configuration](https://docs.jboss.org/hibernate/core/3.6/reference/en-US/html/session-configuration.html)

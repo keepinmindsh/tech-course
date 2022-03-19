@@ -6,47 +6,6 @@
 
 ## **[JPA 해보기](https://github.com/keepinmindsh/tech-course/blob/main/jpa/getstarted/README.md)**
 
-## **Persistence.xml**
-
-- persistence.xml 설정 
-    - jpa의 경우, 기본적인 설정 파일을 필요로 함. 순수 자바 프로젝트에서 사용할 경우 META-INF 하위에 persistence.xml 를 위치시키는 것이 중요함.
-    - 항목별 설명
-        - hibernate.dialect : 데이터베이스 방언, 다양하게 존재하는 DB의 DDL,DML 등의 특성, 고유한 기능에 맞춰 사용할 수 있게 해주는 설정
-    - javax. ~ : 표준에서 제정한 것 
-    - hibernate. ~ : 하이버네이트 전용 옵션
-    - hibernate.show_sql : query를 출력함
-    - hibernate.format_sql : sql을 예쁘게
-    - hibernate.use_sql_comments : 쿼리 실행사유를 표시
-
-```xml
-
-<?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.2"
-             xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
-    <persistence-unit name="hello">
-        <class>bong.lines.sample.Member</class>
-        <class>bong.lines.sample.MemberForSeq</class>
-        <properties>
-            <!-- 필수 속성 -->
-            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
-            <property name="javax.persistence.jdbc.user" value="sa"/>
-            <property name="javax.persistence.jdbc.password" value=""/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/test"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
-
-            <!-- 옵션 -->
-            <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.format_sql" value="true"/>
-            <property name="hibernate.use_sql_comments" value="true"/>
-            <property name="hibernate.hbm2ddl.auto" value="update" />
-        </properties>
-    </persistence-unit>
-</persistence>
-
-```
-
-
 ## **Persistence Context**
 
 - 객체와 관계형 데이터베이스 매핑하기
