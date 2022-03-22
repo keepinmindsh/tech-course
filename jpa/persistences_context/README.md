@@ -1,6 +1,9 @@
 ## **Persistence Context**
 
 - 객체와 관계형 데이터베이스 매핑하기
+    
+![JPA Structure](https://github.com/keepinmindsh/tech-course/blob/5836f80ab528b6ab5d8f2cc2f0c4be6333c8a1f8/assets/jpa_structure.png)
+
 - 영속성 컨텍스트
     - JPA를 이해하는데 가장 중요한 용어
     - "엔티티를 영구 저장하는 환경"이라는 뜻
