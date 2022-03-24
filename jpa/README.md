@@ -7,3 +7,5 @@
 ## **[JPA 해보기](https://github.com/keepinmindsh/tech-course/blob/main/jpa/getstarted/README.md)**
 
 ## **[Persistence Context에 대해서](https://github.com/keepinmindsh/tech-course/blob/main/jpa/persistences_context/README.md)**
+
+## **[JPA 사용 사례](https://github.com/keepinmindsh/tech-course/blob/main/jpa/method/README.md)**
