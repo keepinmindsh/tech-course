@@ -31,7 +31,7 @@ public class MemberForSeq {
 
 ```
 
-#### SEQUENCE 
+##### SEQUENCE 
 
 - 데이터 베이스 시퀀스는 유일한 값을 순서대로 생성하는 특별한 데이터 베이스 오브젝트 ( 예 : 오라클 시퀀스 )
 - 오라클, PostgreSQL, DB2, H2 데이터베이스에서 사용 
@@ -51,7 +51,8 @@ public class MemberForSeq {
 
 ```
 
-- TABLE 
+##### TABLE 
+
     - 키 생성 전용 테이블을 하나 만들어서 데이터베이스 시퀀스를 흉내내는 전략
       - name : 식별자 생성기 이름 
       - table : 키 생성 테이블 명 
