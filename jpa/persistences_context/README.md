@@ -111,7 +111,7 @@ class Sample {
 
 ### Entity Life Cycle
 
-![Entity Lifecycle]()
+![Entity Lifecycle](https://github.com/keepinmindsh/tech-course/blob/main/assets/entity-lifecycle_0001.png)
 
 
 ### 참조 ( 이미지 )
