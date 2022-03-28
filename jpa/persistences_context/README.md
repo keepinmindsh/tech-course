@@ -109,3 +109,11 @@ class Sample {
 
 ```
 
+### Entity Life Cycle
+
+![Entity Lifecycle]()
+
+
+### 참조 ( 이미지 )
+
+> [merge for re attaching detached entities](https://javabydeveloper.com/merge-re-attaching-detached-entities/)
