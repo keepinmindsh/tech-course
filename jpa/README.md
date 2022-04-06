@@ -18,4 +18,4 @@
 
 ## **[9. 상속관계 매핑](https://github.com/keepinmindsh/tech-course/tree/main/jpa/inheritence_mapping)**
 
-## **[10. Mapped Super Class](https://github.com/keepinmindsh/tech-course/tree/main/jpa/inheritence_mapping)**
+## **[10. Mapped Super Class](https://github.com/keepinmindsh/tech-course/tree/main/jpa/mapper_super_class)**
