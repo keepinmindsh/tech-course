@@ -15,3 +15,5 @@
 ## **[7. 기본키 매핑](https://github.com/keepinmindsh/tech-course/tree/main/jpa/primarykey_mapping)**
 
 ## **[8. 연관관계](https://github.com/keepinmindsh/tech-course/tree/main/jpa/relational_mapping)**
+
+## **[9. 상속관계 매핑](https://github.com/keepinmindsh/tech-course/tree/main/jpa/inheritence_mapping)**
