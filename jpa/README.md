@@ -12,3 +12,9 @@
 
 ## **[Entity 매핑](https://github.com/keepinmindsh/tech-course/tree/main/jpa/entity_mapping)**
 
+## **[Proxy 와 연관관계](https://github.com/keepinmindsh/tech-course/tree/main/jpa/proxy)**
+
+## **[지연 로딩과 즉시 로딩](https://github.com/keepinmindsh/tech-course/tree/main/jpa/lazy)**
+
+## **[영속성 전이와 고아객체](https://github.com/keepinmindsh/tech-course/tree/main/jpa/cascade)**
+
