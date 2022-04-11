@@ -12,14 +12,6 @@
 
 ## **[6. Entity 매핑](https://github.com/keepinmindsh/tech-course/tree/main/jpa/entity_mapping)**
 
-<<<<<<< HEAD
-## **[Proxy 와 연관관계](https://github.com/keepinmindsh/tech-course/tree/main/jpa/proxy)**
-
-## **[지연 로딩과 즉시 로딩](https://github.com/keepinmindsh/tech-course/tree/main/jpa/lazy)**
-
-## **[영속성 전이와 고아객체](https://github.com/keepinmindsh/tech-course/tree/main/jpa/cascade)**
-
-=======
 ## **[7. 기본키 매핑](https://github.com/keepinmindsh/tech-course/tree/main/jpa/primarykey_mapping)**
 
 ## **[8. 연관관계](https://github.com/keepinmindsh/tech-course/tree/main/jpa/relational_mapping)**
@@ -27,4 +19,9 @@
 ## **[9. 상속관계 매핑](https://github.com/keepinmindsh/tech-course/tree/main/jpa/inheritence_mapping)**
 
 ## **[10. Mapped Super Class](https://github.com/keepinmindsh/tech-course/tree/main/jpa/mapper_super_class)**
->>>>>>> d4727b4f079244850c403d8659c3945554b77f10
+
+## **[11. Proxy 와 연관관계](https://github.com/keepinmindsh/tech-course/tree/main/jpa/proxy)**
+
+## **[12. 지연 로딩과 즉시 로딩](https://github.com/keepinmindsh/tech-course/tree/main/jpa/lazy)**
+
+## **[13. 영속성 전이와 고아객체](https://github.com/keepinmindsh/tech-course/tree/main/jpa/cascade)**
