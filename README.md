@@ -33,3 +33,7 @@
 ### **Project 수행하기**
 
 ##### [Project 수행하기](https://github.com/keepinmindsh/tech-course/blob/main/project/README.md)
+
+### **기초 개념**
+
+##### [기초개념](https://github.com/keepinmindsh/tech-course/blob/main/basic_concept/README.md)
