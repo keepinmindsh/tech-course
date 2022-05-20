@@ -8,7 +8,6 @@
     - int, integer, String 처럼 단순히 값을 사용하는 자바 기본 타입이나 객체
     - 식별자가 없고 값만 있으므로 변경시 추적 불가
     - 예) 숫자 100을 200으로 변경하면 완전히 다른 값으로 대체
-
 - 기본값 타입
     - 자바 기본 타입(int, double)
     - 래퍼 클래스(Integre, Long)
@@ -19,6 +18,8 @@
     - collection value type
 
 
+# 타입별 설명 
+
 - 기본 값 타입
     - 예) String name, int age
     - 생명주기를 엔티티에 의존
@@ -26,10 +27,10 @@
     - 값 타입은 공유하면 안됨
         - 예) 회원 이름 변경시 다른 회원의 이름이 변경되어서는 안됨.
 
-- 참고 : 자바의 기본 타입은 절대 공유 X
-    - int, double 같은 기본 타입은 절대 공유 X
-    - 기본 타입은 항상 값을 복사함.
-    - integer 같은 래퍼 클래스나 String 같은 특수한 클래스는 공유 가능한 객체이지만 변경 X
+    - 참고 : 자바의 기본 타입은 절대 공유 X
+        - int, double 같은 기본 타입은 절대 공유 X
+        - 기본 타입은 항상 값을 복사함.
+        - integer 같은 래퍼 클래스나 String 같은 특수한 클래스는 공유 가능한 객체이지만 변경 X
 
 
 - 임베디드 타입 ( 복합값 타입 )
@@ -38,10 +39,10 @@
     - 주로 기본 값을 모아서 만들어서 복합 값 타입이라고도 함.
     - int, String과 같은 값 타입
 
-- 임베디드 타입 사용법
-    - @Embeddable : 값 타입을 정의하는 곳에 표시
-    - @Embedded : 값 타입을 사용하는 곳에 표시
-    - 기본 생성자 필수
+    - 임베디드 타입 사용법
+        - @Embeddable : 값 타입을 정의하는 곳에 표시
+        - @Embedded : 값 타입을 사용하는 곳에 표시
+        - 기본 생성자 필수
 
 - 임베디드 타입의 장점
     - 재사용
@@ -49,10 +50,10 @@
     - Period.isWork() 처럼 해당 값 타입만 사용하는 의미 있는 메소드를 만들 수 있음
     - 임베디드 타입을 포함한 모든 값 타입은, 값 타입을 소유한 엔티티에 생명주기를 의존함
 
-- 임베디드 타입 사용법
-    - @Embeddable : 값 타입을 정의하는 곳에 표시
-    - @Embedded : 값 타입을 사용하는 곳에 표시
-    - 기본 생성자 필수
+    - 임베디드 타입 사용법
+        - @Embeddable : 값 타입을 정의하는 곳에 표시
+        - @Embedded : 값 타입을 사용하는 곳에 표시
+        - 기본 생성자 필수
 
 - 임베디드 타입과 테이블 매핑
     - 임베디드 타입은 엔티티 값일 뿐이다.
@@ -60,17 +61,15 @@
     - 객체와 테이블을 아주 세밀하게 매핑하는 것이 가능
     - 잘 설계한 ORM 애플리케이션은 매핑한 테이블의 수보다 클래스의 수가 더 많음
 
-- @AttributeOverride : 속성 재정의
-    - 한 엔티티에서 같은 값 타입을 사용하면?
-    - 컬럼명이 중복됨.
-    - @AttributeOverrides, @AttributeOverride를 사용해서 컬럼 명 속성을 재정의
+    - @AttributeOverride : 속성 재정의
+        - 한 엔티티에서 같은 값 타입을 사용하면?
+        - 컬럼명이 중복됨.
+        - @AttributeOverrides, @AttributeOverride를 사용해서 컬럼 명 속성을 재정의
 
 - 임베디드 타입과 null
     - 임베디드 타입의 값이 null이면 매핑한 컬럼 값은 모두 null
 
-
 ```java
-
 
 @Entity
 public class Member {
@@ -96,7 +95,101 @@ public class Member {
     })
     private Address workAddress;
 }
+```
 
+
+```java
+//임베디드 타입
+@Embeddable
+public class Address {
+
+    private String city;
+
+    private String street;
+
+    private String zipcode;
+
+    public Address(String city, String street, String zipcode) {
+        this.city = city;
+        this.street = street;
+        this.zipcode = zipcode;
+    }
+
+    //기본적으로 컬렉션들은 값의 비교를 eqauls 메서드를 사용하기 때문에 재정의 해준다.
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return Objects.equals(city, address.city) && Objects.equals(street, address.street) &&         Objects.equals(zipcode, address.zipcode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(city, street, zipcode);
+    }
+}
+
+@Entity
+public class Person {
+
+    @Id @GeneratedValue
+    private Long id;
+
+    private String name;
+
+    @ElementCollection
+    @CollectionTable(
+        name = "foods", 
+        joinColumns = @JoinColumn(name = "person_id")
+    )
+    @Column(name = "food_name") //값이 하나고 내가 정의한 것이 아니기 때문에 예외적으로 컬럼명 변경 허용
+    Set<String> favoriteFoods = new HashSet<>();
+
+    @ElementCollection
+    @CollectionTable(
+        name = "address", 
+        joinColumns = @JoinColumn(name = "person_id")
+    )
+    List<Address> addressList = new ArrayList<>();
+
+    public Person(String name) {
+        this.name = name;
+    }
+
+    public Set<String> getFavoriteFoods() {
+        return favoriteFoods;
+    }
+
+    public List<Address> getAddressList() {
+        return addressList;
+    }
+}
+```
+
+```shell
+
+Hibernate: 
+
+    create table address (
+       person_id bigint not null,
+        city varchar(255),
+        street varchar(255),
+        zipcode varchar(255)
+    )
+Hibernate: 
+
+    create table foods (
+       person_id bigint not null,
+        food_name varchar(255)
+    )
+Hibernate: 
+
+    create table Person (
+       id bigint not null,
+        name varchar(255),
+        primary key (id)
+    )
 
 ```
 
