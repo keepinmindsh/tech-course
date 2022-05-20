@@ -25,3 +25,9 @@
 ## **[12. 지연 로딩과 즉시 로딩](https://github.com/keepinmindsh/tech-course/tree/main/jpa/lazy)**
 
 ## **[13. 영속성 전이와 고아객체](https://github.com/keepinmindsh/tech-course/tree/main/jpa/cascade)**
+
+## **[14. JPA 데이터 타입 분류](https://github.com/keepinmindsh/tech-course/tree/main/jpa/jpadatatype)**
+
+## **[15. 복합키 / 외래키](https://github.com/keepinmindsh/tech-course/tree/main/jpa/keyrelation)**
+
+## **[16. 객체지향 쿼리 언어](https://github.com/keepinmindsh/tech-course/tree/main/jpa/oopquery)**
