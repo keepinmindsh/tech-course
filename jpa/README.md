@@ -31,3 +31,5 @@
 ## **[15. 복합키 / 외래키](https://github.com/keepinmindsh/tech-course/tree/main/jpa/keyrelation)**
 
 ## **[16. 객체지향 쿼리 언어](https://github.com/keepinmindsh/tech-course/tree/main/jpa/oopquery)**
+
+## **[17. 프로젝션](https://github.com/keepinmindsh/tech-course/tree/main/jpa/projection)**
